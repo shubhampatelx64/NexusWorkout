@@ -6,7 +6,7 @@
 //  yet.  Each is replaced as the relevant Phase-1 subsection lands:
 //    Today       -> P1.3   ✅ Views/Today/TodayView.swift
 //    Train       -> P1.4   ✅ Views/Train/TrainView.swift
-//    Eat         -> P1.5
+//    Eat         -> P1.5   ✅ Views/Eat/EatView.swift
 //    Progress    -> P1.6
 //    Labs        -> P2  (out of Phase-1 scope)
 //
@@ -43,16 +43,6 @@ private struct StubScreen: View {
         .dsBackground()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct EatView: View {
-    var body: some View {
-        StubScreen(
-            title: "Eat",
-            subtitle: "Meal plan, one-tap logging and supplement checklist ship in P1.5.",
-            symbol: "fork.knife"
-        )
     }
 }
 
