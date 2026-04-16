@@ -43,6 +43,11 @@ struct NexusWorkoutApp: App {
             RootView()
                 .preferredColorScheme(.dark)
                 .tint(DS.Color.accentPrimary)
+                .task {
+                    // One-time seed of exercises / workouts / meals / etc.
+                    // Guarded by a UserDefaults flag — see PlanSeeder.
+                    PlanSeeder.seedIfNeeded(context: modelContainer.mainContext)
+                }
         }
         .modelContainer(modelContainer)
     }
