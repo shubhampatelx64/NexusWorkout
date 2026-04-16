@@ -2,9 +2,11 @@
 //  EatView.swift
 //  NexusWorkout
 //
-//  Eat tab root.  Two-pane segmented control:
+//  Eat tab root.  Three-pane segmented control:
 //    Plan         — week view; pick a day, see its 5 meals, log the
 //                   ones you actually ate (only enabled for today).
+//    Groceries    — shopping list derived from meal items, scoped
+//                   to today or the whole week.
 //    Supplements  — today's 6-supplement checklist.
 //
 //  Logging from this tab also gives the user a way to UN-log a meal
@@ -20,6 +22,7 @@ struct EatView: View {
 
     enum Pane: String, CaseIterable, Identifiable {
         case plan        = "Plan"
+        case groceries   = "Groceries"
         case supplements = "Supplements"
         var id: String { rawValue }
     }
@@ -36,6 +39,7 @@ struct EatView: View {
 
             switch pane {
             case .plan:        MealPlanPane(selectedDay: $selectedDay)
+            case .groceries:   GroceryPane()
             case .supplements: SupplementsPane()
             }
         }
