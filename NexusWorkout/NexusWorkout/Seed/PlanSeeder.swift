@@ -39,21 +39,20 @@ enum PlanSeeder {
         for ex in exercises { context.insert(ex) }
         let byName = Dictionary(uniqueKeysWithValues: exercises.map { ($0.name, $0) })
 
-        // 2. Workouts — wired up in P1.2b.
-        //    let workouts = WorkoutCatalog.all(using: byName)
-        //    workouts.forEach { context.insert($0) }
+        // 2. Workouts — 5-day and 6-day templates, with their TemplateExercise
+        //    rows resolved by name from the dict above.
+        let workouts = WorkoutCatalog.all(using: byName)
+        for wt in workouts { context.insert(wt) }
 
-        // 3. Meals — wired up in P1.2b.
+        // 3. Meals — wired up in P1.2c.
         //    MealCatalog.all().forEach { context.insert($0) }
 
-        // 4. Supplements — wired up in P1.2b.
+        // 4. Supplements — wired up in P1.2c.
         //    SupplementCatalog.all().forEach { context.insert($0) }
 
-        // 5. Baseline blood report — wired up in P1.2b.
+        // 5. Baseline blood report — wired up in P1.2c.
         //    let baseline = BaselineBloodReport.make()
         //    context.insert(baseline)
-
-        _ = byName  // silence unused until P1.2b wires the rest
 
         do {
             try context.save()
