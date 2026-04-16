@@ -67,6 +67,9 @@ struct TodayView: View {
         .dsBackground()
         .navigationTitle("Today")
         .navigationBarTitleDisplayMode(.large)
+        .navigationDestination(for: WorkoutTemplate.self) { tpl in
+            ActiveSessionView(template: tpl)
+        }
         .task { todayLog = ensureTodayLog() }
     }
 

@@ -5,7 +5,7 @@
 //  Placeholder views for tabs whose real implementations haven't shipped
 //  yet.  Each is replaced as the relevant Phase-1 subsection lands:
 //    Today       -> P1.3   ✅ Views/Today/TodayView.swift
-//    Train       -> P1.4
+//    Train       -> P1.4   ✅ Views/Train/TrainView.swift
 //    Eat         -> P1.5
 //    Progress    -> P1.6
 //    Labs        -> P2  (out of Phase-1 scope)
@@ -43,16 +43,6 @@ private struct StubScreen: View {
         .dsBackground()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct TrainView: View {
-    var body: some View {
-        StubScreen(
-            title: "Train",
-            subtitle: "Workout browser, active logger, rest timer and exercise library ship in P1.4.",
-            symbol: "dumbbell.fill"
-        )
     }
 }
 

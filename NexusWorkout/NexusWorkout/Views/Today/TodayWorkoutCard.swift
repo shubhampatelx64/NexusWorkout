@@ -73,9 +73,7 @@ struct TodayWorkoutCard: View {
         }
         .padding(.top, DS.Spacing.xxs)
 
-        Button {
-            // Wired in P1.4 — opens the active logger.
-        } label: {
+        NavigationLink(value: template) {
             Label("Start Workout", systemImage: "play.fill")
                 .font(DS.Font.bodyEmphasised)
                 .frame(maxWidth: .infinity)
@@ -85,8 +83,6 @@ struct TodayWorkoutCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: DS.Radius.small, style: .continuous))
         }
         .buttonStyle(.plain)
-        .disabled(true)
-        .opacity(0.55)
     }
 
     private var restDay: some View {
