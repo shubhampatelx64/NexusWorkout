@@ -47,6 +47,17 @@ struct NexusWorkoutApp: App {
                     // One-time seed of exercises / workouts / meals / etc.
                     // Guarded by a UserDefaults flag — see PlanSeeder.
                     PlanSeeder.seedIfNeeded(context: modelContainer.mainContext)
+
+                    // Ask for notification permission once on first launch
+                    // (no-op thereafter — system caches the decision) and
+                    // sync every enabled ReminderConfig to UN.
+                    _ = await NotificationService.requestAuthorization()
+                    let descriptor = FetchDescriptor<ReminderConfig>()
+                    let configs = (try? modelContainer.mainContext.fetch(descriptor)) ?? []
+                    await NotificationService.sync(
+                        configs: configs,
+                        context: modelContainer.mainContext
+                    )
                 }
         }
         .modelContainer(modelContainer)
