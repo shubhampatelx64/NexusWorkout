@@ -2,9 +2,9 @@
 //  TabStubs.swift
 //  NexusWorkout
 //
-//  P1.1 placeholder views — one per tab.  Each is replaced with the real
-//  implementation in the relevant subsection of Phase 1:
-//    Today       -> P1.3
+//  Placeholder views for tabs whose real implementations haven't shipped
+//  yet.  Each is replaced as the relevant Phase-1 subsection lands:
+//    Today       -> P1.3   ✅ Views/Today/TodayView.swift
 //    Train       -> P1.4
 //    Eat         -> P1.5
 //    Progress    -> P1.6
@@ -43,16 +43,6 @@ private struct StubScreen: View {
         .dsBackground()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct TodayView: View {
-    var body: some View {
-        StubScreen(
-            title: "Today",
-            subtitle: "Daily dashboard ships in P1.3 — workout, meals, macros ring, water, quick log.",
-            symbol: "sun.max.fill"
-        )
     }
 }
 
