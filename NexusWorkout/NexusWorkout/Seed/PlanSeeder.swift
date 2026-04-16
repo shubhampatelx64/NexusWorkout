@@ -44,15 +44,15 @@ enum PlanSeeder {
         let workouts = WorkoutCatalog.all(using: byName)
         for wt in workouts { context.insert(wt) }
 
-        // 3. Meals — wired up in P1.2c.
-        //    MealCatalog.all().forEach { context.insert($0) }
+        // 3. Meals — 35 templates, 7 days × 5 slots.
+        for meal in MealCatalog.all() { context.insert(meal) }
 
-        // 4. Supplements — wired up in P1.2c.
-        //    SupplementCatalog.all().forEach { context.insert($0) }
+        // 4. Supplements — 6 schedules with default reminder times.
+        for supp in SupplementCatalog.all() { context.insert(supp) }
 
-        // 5. Baseline blood report — wired up in P1.2c.
-        //    let baseline = BaselineBloodReport.make()
-        //    context.insert(baseline)
+        // 5. Baseline blood report — the panel the plan was written against.
+        //    Cascades to ~25 markers via the report's `markers` relationship.
+        context.insert(BaselineBloodReport.make())
 
         do {
             try context.save()
