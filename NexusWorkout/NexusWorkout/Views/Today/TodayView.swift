@@ -67,6 +67,16 @@ struct TodayView: View {
         .dsBackground()
         .navigationTitle("Today")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    SettingsView()
+                } label: {
+                    Image(systemName: "gearshape")
+                        .foregroundStyle(DS.Color.textPrimary)
+                }
+            }
+        }
         .navigationDestination(for: WorkoutTemplate.self) { tpl in
             ActiveSessionView(template: tpl)
         }
