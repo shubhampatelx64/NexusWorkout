@@ -54,11 +54,22 @@ enum PlanSeeder {
         for meal in MealCatalog.all() { context.insert(meal) }
 
         // 4. Supplements — 6 schedules with default reminder times.
-        for supp in SupplementCatalog.all() { context.insert(supp) }
+        let supplements = SupplementCatalog.all()
+        for supp in supplements { context.insert(supp) }
 
         // 5. Baseline blood report — the panel the plan was written against.
         //    Cascades to ~25 markers via the report's `markers` relationship.
         context.insert(BaselineBloodReport.make())
+
+        // 6. Reminders — ten default times covering meals / water / workout /
+        //    sleep, plus one consolidated ping per distinct supplement time.
+        //    NexusWorkoutApp schedules these with UN after seed completes.
+        for reminder in DefaultReminders.all() {
+            context.insert(reminder)
+        }
+        for reminder in DefaultReminders.supplementReminders(from: supplements) {
+            context.insert(reminder)
+        }
 
         do {
             try context.save()
