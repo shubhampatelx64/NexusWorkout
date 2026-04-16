@@ -35,8 +35,14 @@ enum PlanSeeder {
     @MainActor
     static func seed(into context: ModelContext) {
         // 1. Exercises — must come first; workouts reference these.
+        //    Form diagrams (ASCII) for the 11 primary lifts are attached
+        //    here so PrimaryLifts.swift stays free of long raw strings.
         let exercises = ExerciseCatalog.all()
-        for ex in exercises { context.insert(ex) }
+        for ex in exercises {
+            let diagram = PrimaryLiftDiagrams.diagram(for: ex.name)
+            if !diagram.isEmpty { ex.formDiagramText = diagram }
+            context.insert(ex)
+        }
         let byName = Dictionary(uniqueKeysWithValues: exercises.map { ($0.name, $0) })
 
         // 2. Workouts — 5-day and 6-day templates, with their TemplateExercise
